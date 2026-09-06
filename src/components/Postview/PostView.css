@@ -1,0 +1,174 @@
+.post-view-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+
+.post-view {
+  position: relative;
+  width: 900px;
+  height: 600px;
+  background-color: white;
+  display: flex;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+
+.post-view-close {
+  position: fixed;
+  top: 20px;
+  right: 25px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 25px;
+  cursor: pointer;
+  z-index: 1002;
+}
+
+
+.post-view-left {
+  width: 55%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.post-view-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+.post-view-right {
+  width: 45%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.post-view-header {
+  height: 65px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+
+.post-view-profile {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+.post-view-comments {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+}
+
+
+.post-view-bottom {
+  border-top: 1px solid #ddd;
+}
+
+
+.post-view-actions {
+  display: flex;
+  gap: 18px;
+  padding: 12px 15px;
+  font-size: 23px;
+}
+
+.post-view-actions i {
+  cursor: pointer;
+}
+
+
+.post-view-likes {
+  padding: 0 15px 10px;
+  font-weight: bold;
+}
+
+
+.post-view-comment-input {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #ddd;
+  padding: 10px 15px;
+}
+
+
+.post-view-comment-input input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+
+.post-view-comment-input button {
+  border: none;
+  background: none;
+  color: #0095f6;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.post-comment {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+
+.comment-profile-image {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+.comment-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+
+
+.comment-content strong {
+  font-size: 14px;
+}
+
+
+.comment-content span {
+  font-size: 14px;
+  color: #333;
+}
+
+
+.comment-heart {
+  font-size: 14px;
+  cursor: pointer;
+}

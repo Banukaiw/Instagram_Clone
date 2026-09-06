@@ -1,0 +1,41 @@
+.posts-container {
+  height: calc(100vh - 20px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+}
+
+.posts-container::-webkit-scrollbar {
+  display: none; 
+}
+.post-img {
+  
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.action-icon{
+  display: flex;
+  gap: 15px;
+  margin: 10px 0;
+  font-size: 20px;
+  -webkit-text-stroke: 0.8px;
+  align-items: center;
+}
+.action-icon i{
+  margin-left: 5px;
+  
+}
+.action-icon :last-child{
+  right: 0;
+  margin-left: auto;
+  
+}
+
+.action-like{
+  margin-left: -20px;
+  font-size: 15px;
+  -webkit-text-stroke: 0.8px;
+}

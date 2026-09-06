@@ -1,0 +1,22 @@
+:root {
+  --notification-bg: white;
+  --notification-text: #111;
+  --notification-border: #dbdbdb;
+  --notification-active-bg: #efefef;
+  --notification-secondary-text: #737373;
+}
+
+.dark {
+  --notification-bg: #0f1419;
+  --notification-text: white;
+  --notification-border: #363636;
+  --notification-active-bg: #262626;
+  --notification-secondary-text: #a8a8a8;
+}
+
+.app-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  
+}

@@ -1,0 +1,450 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "user": {
+        "id": "u1",
+        "username": "Jhosep Canneta",
+        "profile_pic": "https://i.pinimg.com/736x/c4/aa/37/c4aa37f55bd2221e1c58dc1719305cfe.jpg"
+      },
+      "image": "https://i.pinimg.com/736x/20/61/37/206137011d84248c051a8f1a91394b33.jpg",
+      "caption": "Enjoying the Weekend from dinner out...",
+      "likes": "2.4K",
+      "comcount": "50",
+      "comments": [
+        {
+          "username": "alex",
+          "text": "Awesome view!2"
+        }
+      ],
+      "timestamp": "2 hours ago"
+    },
+    {
+      "id": "2",
+      "user": {
+        "id": "u2",
+        "username": "jane_smith",
+        "profile_pic": "src/assets/user2.jpg"
+      },
+      "image": "https://i.pinimg.com/1200x/c8/6e/82/c86e82ad63a90d798868567c8cb8e12a.jpg",
+      "caption": "Gym Time. Best time 🏋️⏱️",
+      "likes": 230,
+      "comments": [],
+      "timestamp": "5 hours ago"
+    },
+    {
+      "user": {
+        "id": "1",
+        "username": "Choáng với",
+        "profile_pic": "https://i.pinimg.com/1200x/2f/b0/11/2fb01126cde4fa7b4d4f5c209c7cb0a3.jpg"
+      },
+      "image": "https://i.pinimg.com/1200x/33/ef/b7/33efb7c2ebd2fa39fe17b8319883c358.jpg",
+      "caption": "Free Time...",
+      "likes": 0,
+      "comments": [],
+      "timestamp": "2026-08-17T11:25:03.423Z",
+      "id": "fG2GetHx-iQ"
+    },
+    {
+      "user": {
+        "id": "1",
+        "username": "Muskan_KL",
+        "profile_pic": "https://i.pinimg.com/1200x/94/23/55/9423554380e3602574fd97846600330c.jpg"
+      },
+      "image": "https://i.pinimg.com/736x/a8/8e/fc/a88efcf4513f34965f0225fe3936c039.jpg",
+      "caption": "Photography...",
+      "likes": 0,
+      "comments": [],
+      "timestamp": "2026-08-18T16:53:20.593Z",
+      "id": "Z88xfoVrpbU"
+    },
+    {
+      "user": {
+        "id": "1",
+        "username": "ɳყ. ƙіɱᥡσσɳɱιɳ",
+        "profile_pic": "https://i.pinimg.com/736x/67/b0/15/67b015e37961ced0c4b55ede636fdf3d.jpg"
+      },
+      "image": "https://i.pinimg.com/736x/3a/ab/52/3aab522df81213ca220a3611d4ae36a6.jpg",
+      "caption": "Plesure",
+      "likes": 0,
+      "comments": [],
+      "timestamp": "2026-08-20T16:06:40.358Z",
+      "id": "Xx0CAgWQruo"
+    },
+    {
+      "user": {
+        "id": "1",
+        "username": "Soumya",
+        "profile_pic": "https://i.pinimg.com/736x/f2/42/97/f242977db5d5e96972444d9013b37bea.jpg"
+      },
+      "image": "https://i.pinimg.com/1200x/0d/50/83/0d50839440f9a94526f193caad807aed.jpg",
+      "caption": "Holiday",
+      "likes": 0,
+      "comments": [],
+      "timestamp": "2026-08-20T17:22:42.245Z",
+      "id": "f4yrEOWxFZ4"
+    }
+  ],
+  "comments": [
+    {
+      "id": "c1",
+      "postId": "1",
+      "username": "alex",
+      "profileImage": "https://picsum.photos/id/25/100/100",
+      "text": "Awesome view!"
+    },
+    {
+      "id": "c2",
+      "postId": "1",
+      "username": "sarah",
+      "profileImage": "https://picsum.photos/id/32/100/100",
+      "text": "Beautiful picture ❤️"
+    },
+    {
+      "id": "c3",
+      "postId": "2",
+      "username": "mike",
+      "profileImage": "https://picsum.photos/id/45/100/100",
+      "text": "What an edit ❤️"
+    },
+    {
+      "postId": "1",
+      "username": "johndoe",
+      "profileImage": "https://picsum.photos/id/1025/100/100",
+      "text": "❤️❤️",
+      "id": "zkEzFwCYTu4"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "email": "johndoe@email.com",
+      "fullName": "John Doe",
+      "username": "johndoe",
+      "password": "password123",
+      "profilePicture": "https://picsum.photos/id/1025/200/200",
+      "bio": "Photographer & Traveller 📸"
+    },
+    {
+      "email": "arthur.levis@example.com",
+      "fullName": "Arthur Levis",
+      "username": "arthur_levis",
+      "password": "password123",
+      "profilePicture": "https://i.pinimg.com/1200x/0d/5d/d3/0d5dd368ce8e8f707ce85f5599e6e44e.jpg",
+      "bio": "",
+      "id": "wGtmlkQCa5o"
+    },
+    {
+      "email": "alan@gmail.com",
+      "fullName": "Alan Walker",
+      "username": "alan_walker",
+      "password": "1234567",
+      "profilePicture": "https://i.pinimg.com/1200x/99/30/ad/9930ad0563655896c3bd3964f1ebb22f.jpg",
+      "bio": "",
+      "id": "AX41yfaGs6o"
+    },
+    {
+      "email": "banuka@gmail.com",
+      "fullName": "Banuka",
+      "username": "Banuka_i",
+      "password": "banuka",
+      "profilePicture": "https://picsum.photos/id/59/200/200",
+      "bio": "",
+      "id": "JBrHwreUsy0"
+    }
+  ],
+  "profile": {
+    "id": "1",
+    "username": "johndoe",
+    "profile_pic": "src/assets/user1.jpg"
+  },
+  "suggestions": [
+    {
+      "id": "101",
+      "username": "Arpit Thakur",
+      "profile_pic": "src/assets/Arpit Thakur.jpg"
+    },
+    {
+      "id": "102",
+      "username": "Ates Lordu",
+      "profile_pic": "src/assets/Ates Lordu.jpg"
+    },
+    {
+      "id": "103",
+      "username": "Rukmani Wasanth",
+      "profile_pic": "src/assets/Rukmani Wasanth.jpg"
+    },
+    {
+      "id": "104",
+      "username": "Grabeal Guerava",
+      "profile_pic": "src/assets/Grabeal Guerava.jpg"
+    },
+    {
+      "id": "105",
+      "username": "Anushka Deka",
+      "profile_pic": "src/assets/Anushka Deka.jpg"
+    }
+  ],
+  "stories": [
+    {
+      "id": "1",
+      "username": "Sara",
+      "userImage": "https://picsum.photos/id/1025/100/100",
+      "storyImage": "https://picsum.photos/id/1015/600/800",
+      "timestamp": "2025-03-02T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "username": "Travel_with_ana",
+      "userImage": "https://picsum.photos/id/1011/100/100",
+      "storyImage": "https://picsum.photos/id/1020/600/800",
+      "timestamp": "2025-03-02T11:30:00Z"
+    },
+    {
+      "id": "3",
+      "username": "john_doe",
+      "userImage": "https://picsum.photos/id/1005/100/100",
+      "storyImage": "https://picsum.photos/id/1012/600/800",
+      "timestamp": "2025-03-02T12:00:00Z"
+    },
+    {
+      "id": "4",
+      "username": "Adam",
+      "userImage": "https://picsum.photos/id/1004/100/100",
+      "storyImage": "https://picsum.photos/id/1012/600/800",
+      "timestamp": "2025-03-02T12:00:00Z"
+    },
+    {
+      "id": "5",
+      "username": "Andrew",
+      "userImage": "https://picsum.photos/id/1006/100/100",
+      "storyImage": "https://picsum.photos/id/1012/600/800",
+      "timestamp": "2025-03-02T12:00:00Z"
+    },
+    {
+      "id": "6",
+      "username": "Nicole",
+      "userImage": "https://picsum.photos/id/1003/100/100",
+      "storyImage": "https://picsum.photos/id/1012/600/800",
+      "timestamp": "2025-03-02T12:00:00Z"
+    },
+    {
+      "id": "7",
+      "username": "Ashley",
+      "userImage": "https://picsum.photos/id/1008/100/100",
+      "storyImage": "https://picsum.photos/id/1012/600/800",
+      "timestamp": "2025-03-02T12:00:00Z"
+    },
+    {
+      "id": "8",
+      "username": "john_doe",
+      "userImage": "https://picsum.photos/id/1009/100/100",
+      "storyImage": "https://picsum.photos/id/1012/600/800",
+      "timestamp": "2025-03-02T12:00:00Z"
+    },
+    {
+      "id": "9",
+      "username": "john_doe",
+      "userImage": "https://picsum.photos/id/1002/100/100",
+      "storyImage": "https://picsum.photos/id/1012/600/800",
+      "timestamp": "2025-03-02T12:00:00Z"
+    },
+    {
+      "id": "10",
+      "username": "john_doe",
+      "userImage": "https://picsum.photos/id/1001/100/100",
+      "storyImage": "https://picsum.photos/id/1012/600/800",
+      "timestamp": "2025-03-02T12:00:00Z"
+    },
+    {
+      "id": "11",
+      "username": "john_doe",
+      "userImage": "https://picsum.photos/id/1005/100/100",
+      "storyImage": "https://picsum.photos/id/1013/600/800",
+      "timestamp": "2025-03-02T12:00:00Z"
+    }
+  ],
+  "reels": [
+    {
+      "id": "1",
+      "username": "@CudiEdits",
+      "profileImage": "https://i.pravatar.cc/150?img=12",
+      "video": "/videos/reels9.mp4",
+      "caption": "How to make CINEMATIC gym Videos #viralcideo #rendingshort #gym #explrepage",
+      "likes": "123K",
+      "comments": 84
+    },
+    {
+      "id": "2",
+      "username": "@Car_Lovers ",
+      "profileImage": "https://i.pravatar.cc/150?img=32",
+      "video": "/videos/reels15.mp4",
+      "caption": "Mensory Rolls-Royce black addition car video edit.. #viralcideo #rendingshort #car #explrepage",
+      "likes": "689K",
+      "comments": 45
+    },
+    {
+      "id": "3",
+      "username": "@daily_vibes",
+      "profileImage": "https://i.pravatar.cc/150?img=45",
+      "video": "/videos/reels8.mp4",
+      "caption": "Munbai_Rains Just enjoying the moment ✨ #viralcideo #rendingshort #rain #explrepage",
+      "likes": 2340,
+      "comments": 126
+    },
+    {
+      "id": "4",
+      "username": "@welcome2rampur",
+      "profileImage": "https://i.pravatar.cc/150?img=52",
+      "video": "/videos/reels7.mp4",
+      "caption": "khatarnak looks girls || Chinese girl #viralcideo #rendingshort #chinesgirl #explrepage",
+      "likes": 1780,
+      "comments": 93
+    }
+  ],
+  "notifications": [
+    {
+      "id": "1",
+      "username": "john_doe",
+      "profileImage": "https://i.pravatar.cc/100?img=12",
+      "type": "like",
+      "message": "liked your post",
+      "time": "2h"
+    },
+    {
+      "id": "2",
+      "username": "sarah_123",
+      "profileImage": "https://i.pravatar.cc/100?img=32",
+      "type": "follow",
+      "message": "started following you",
+      "time": "5h"
+    },
+    {
+      "id": "3",
+      "username": "mike_dev",
+      "profileImage": "https://i.pravatar.cc/100?img=45",
+      "type": "comment",
+      "message": "commented on your post",
+      "time": "1d"
+    }
+  ],
+  "conversations": [
+    {
+      "id": "conv1",
+      "participants": [
+        "1",
+        "wGtmlkQCa5o"
+      ],
+      "lastMessage": "Hello, this is a new message!",
+      "lastMessageTime": "2026-09-06T14:33:16.657Z"
+    },
+    {
+      "id": "conv2",
+      "participants": [
+        "1",
+        "AX41yfaGs6o"
+      ],
+      "lastMessage": "hey alan!",
+      "lastMessageTime": "2026-09-06T15:17:00.755Z"
+    }
+  ],
+  "messages": [
+    {
+      "id": "msg1",
+      "conversationId": "conv1",
+      "senderId": "1",
+      "receiverId": "wGtmlkQCa5o",
+      "text": "Hello!",
+      "timestamp": "2026-08-31T09:58:00.000Z"
+    },
+    {
+      "id": "msg2",
+      "conversationId": "conv1",
+      "senderId": "wGtmlkQCa5o",
+      "receiverId": "1",
+      "text": "Hello! How are you?",
+      "timestamp": "2026-08-31T10:00:00.000Z"
+    },
+    {
+      "id": "msg3",
+      "conversationId": "conv2",
+      "senderId": "AX41yfaGs6o",
+      "receiverId": "1",
+      "text": "Hey John!",
+      "timestamp": "2026-08-31T09:30:00.000Z"
+    },
+    {
+      "id": "1788705196657",
+      "conversationId": "conv1",
+      "senderId": "1",
+      "receiverId": "wGtmlkQCa5o",
+      "text": "Hello, this is a new message!",
+      "timestamp": "2026-09-06T14:33:16.657Z"
+    },
+    {
+      "id": "1788707820755",
+      "conversationId": "conv2",
+      "senderId": "1",
+      "receiverId": "AX41yfaGs6o",
+      "text": "hey alan!",
+      "timestamp": "2026-09-06T15:17:00.755Z"
+    }
+  ],
+  "searchImages": [
+    {
+      "id": "1",
+      "image": "https://i.pinimg.com/736x/20/61/37/206137011d84248c051a8f1a91394b33.jpg"
+    },
+    {
+      "id": "2",
+      "image": "https://i.pinimg.com/1200x/c8/6e/82/c86e82ad63a90d798868567c8cb8e12a.jpg"
+    },
+    {
+      "id": "3",
+      "image": "https://i.pinimg.com/1200x/33/ef/b7/33efb7c2ebd2fa39fe17b8319883c358.jpg"
+    },
+    {
+      "id": "4",
+      "image": "https://i.pinimg.com/736x/a8/8e/fc/a88efcf4513f34965f0225fe3936c039.jpg"
+    },
+    {
+      "id": "5",
+      "image": "https://i.pinimg.com/736x/67/b0/15/67b015e37961ced0c4b55ede636fdf3d.jpg"
+    },
+    {
+      "id": "6",
+      "image": "https://i.pinimg.com/736x/3a/ab/52/3aab522df81213ca220a3611d4ae36a6.jpg"
+    },
+    {
+      "id": "7",
+      "image": "https://i.pinimg.com/1200x/0d/50/83/0d50839440f9a94526f193caad807aed.jpg"
+    },
+    {
+      "id": "8",
+      "image": "https://i.pinimg.com/736x/f2/42/97/f242977db5d5e96972444d9013b37bea.jpg"
+    },
+    {
+      "id": "9",
+      "image": "https://picsum.photos/id/1015/800/800"
+    },
+    {
+      "id": "10",
+      "image": "https://picsum.photos/id/1016/800/800"
+    },
+    {
+      "id": "11",
+      "image": "https://picsum.photos/id/1018/800/800"
+    },
+    {
+      "id": "12",
+      "image": "https://picsum.photos/id/1020/800/800"
+    }
+  ],
+  "userProfile": {
+    "id": "1",
+    "username": "johndoe",
+    "bio": "Photographer & Traveller 📸",
+    "profilePicture": "https://picsum.photos/id/1025/200/200"
+  },
+  "$schema": "./node_modules/json-server/schema.json"
+}

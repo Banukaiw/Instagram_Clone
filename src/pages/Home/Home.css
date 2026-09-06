@@ -1,0 +1,10 @@
+.suggest{
+    min-width: 550px;
+    scrollbar-width: none;
+}
+
+@media (max-width: 1200px) {
+  .suggest {
+    display: none;
+  }
+}

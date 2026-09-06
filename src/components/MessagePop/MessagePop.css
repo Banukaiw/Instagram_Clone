@@ -1,0 +1,23 @@
+.message-container{
+    display: flex;
+    position: sticky;
+    position: absolute;
+    align-items: center;
+    z-index: 20;
+    gap: 4px;
+    padding: 20px;
+    right: 3%;
+    bottom: 4%;
+    border-radius: 30px;
+    width: 250px;
+    height: 60px;
+     background-color: #cecece;
+    font-size: larger;
+    font-weight: 500;
+    cursor: pointer;
+    
+}
+
+.message-container:hover{
+    background-color: rgb(170, 170, 170);
+}
