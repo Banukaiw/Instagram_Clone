@@ -1,21 +1,22 @@
 import { useNavigate } from 'react-router-dom';
+import { useContext } from "react";
+import { ThemeContext } from "../../context/ThemeContext";
 import './More.css';
 
+
 function More({ onClose }) {
+
+    const { toggleTheme } = useContext(ThemeContext);
 
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        // Remove login information
+       
         localStorage.removeItem('token');
 
-        // If you store other login information, remove them too
         localStorage.removeItem('user');
-
-        // Close popup
-        onClose();
-
-        // Go to login page
+    
+        onClose();  
         navigate('/login', { replace: true });
     };
 
@@ -40,8 +41,10 @@ function More({ onClose }) {
                 </div>
 
                 <div className="more-menu-item">
-                    <i className="bi bi-moon"></i>
-                    <span>Switch appearance</span>
+                    <button onClick={toggleTheme} className="theme-toggle-button">
+                        <i className="bi bi-moon"></i>
+                        <span>Switch appearance</span>
+                    </button>
                 </div>
 
                 <div className="more-menu-item">

@@ -16,7 +16,7 @@
   position: relative;
   width: 900px;
   height: 600px;
-  background-color: white;
+  background-color: var(--bg-color);
   display: flex;
   border-radius: 8px;
   overflow: hidden;
@@ -39,10 +39,11 @@
 .post-view-left {
   width: 55%;
   height: 100%;
-  background-color: black;
+  background-color: var(--bg-color);
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 
 
@@ -50,6 +51,7 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+  
 }
 
 
@@ -76,6 +78,7 @@
   height: 35px;
   border-radius: 50%;
   object-fit: cover;
+  border: 1px solid var(--secondary-text);
 }
 
 
@@ -100,6 +103,7 @@
 
 .post-view-actions i {
   cursor: pointer;
+  color: var(--text-color);
 }
 
 
@@ -114,6 +118,8 @@
   align-items: center;
   border-top: 1px solid #ddd;
   padding: 10px 15px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 
@@ -122,6 +128,14 @@
   border: none;
   outline: none;
   font-size: 14px;
+  
+  caret-color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+.post-view-comment-input input::placeholder {
+  color: var(--secondary-text); 
+  opacity: 1; 
 }
 
 
@@ -154,6 +168,7 @@
   flex-direction: column;
   gap: 3px;
   flex: 1;
+  color: var(--text-color);
 }
 
 
@@ -164,7 +179,7 @@
 
 .comment-content span {
   font-size: 14px;
-  color: #333;
+  color: var(--text-color);
 }
 
 

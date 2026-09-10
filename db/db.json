@@ -335,8 +335,8 @@
         "1",
         "wGtmlkQCa5o"
       ],
-      "lastMessage": "Hello, this is a new message!",
-      "lastMessageTime": "2026-09-06T14:33:16.657Z"
+      "lastMessage": "testing3",
+      "lastMessageTime": "2026-09-08T17:46:44.554Z"
     },
     {
       "id": "conv2",
@@ -344,8 +344,8 @@
         "1",
         "AX41yfaGs6o"
       ],
-      "lastMessage": "hey alan!",
-      "lastMessageTime": "2026-09-06T15:17:00.755Z"
+      "lastMessage": "testing2",
+      "lastMessageTime": "2026-09-08T17:35:04.723Z"
     }
   ],
   "messages": [
@@ -388,6 +388,30 @@
       "receiverId": "AX41yfaGs6o",
       "text": "hey alan!",
       "timestamp": "2026-09-06T15:17:00.755Z"
+    },
+    {
+      "id": "1788889214922",
+      "conversationId": "conv1",
+      "senderId": "1",
+      "receiverId": "wGtmlkQCa5o",
+      "text": "testing",
+      "timestamp": "2026-09-08T17:40:14.922Z"
+    },
+    {
+      "id": "1788889531602",
+      "conversationId": "conv1",
+      "senderId": "1",
+      "receiverId": "wGtmlkQCa5o",
+      "text": "testing2",
+      "timestamp": "2026-09-08T17:45:31.602Z"
+    },
+    {
+      "id": "1788889604554",
+      "conversationId": "conv1",
+      "senderId": "1",
+      "receiverId": "wGtmlkQCa5o",
+      "text": "testing3",
+      "timestamp": "2026-09-08T17:46:44.554Z"
     }
   ],
   "searchImages": [

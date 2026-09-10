@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useContext } from "react";
 import { fetchNotifications } from '../../services/api';
+import { ThemeContext } from "../../context/ThemeContext";
 import './Notification.css';
 
 function Notification({ onClose }) {
   const [notifications, setNotifications] = useState([]);
+  const { darkMode } = useContext(ThemeContext);
 
   useEffect(() => {
     fetchNotifications()
@@ -16,6 +19,7 @@ function Notification({ onClose }) {
   }, []);
 
   return (
+    <div className={darkMode ? 'notification-panel dark' : 'notification-panel'}>
     <div className="notification-panel">
       <div className="notification-header">
         <h2>Notifications</h2>
@@ -91,6 +95,7 @@ function Notification({ onClose }) {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 }

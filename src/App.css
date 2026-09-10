@@ -1,22 +1,31 @@
 :root {
-  --notification-bg: white;
-  --notification-text: #111;
-  --notification-border: #dbdbdb;
-  --notification-active-bg: #efefef;
-  --notification-secondary-text: #737373;
+  --bg-color: white;
+  --bg-color2: #fafafa;
+  --popup-bg: #efefef;
+  --text-color: #111;
+  --invert-color: #fff;
+  --border-color: #adadad;
+  --active-bg-color: #f4f5f7;
+  --hover-color: #cfcfcf;
+  --secondary-text: #737373;
+  --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .dark {
-  --notification-bg: #0f1419;
-  --notification-text: white;
-  --notification-border: #363636;
-  --notification-active-bg: #262626;
-  --notification-secondary-text: #a8a8a8;
+  --bg-color: #0c1014;
+  --bg-color2:  #2d2d2d;
+  --popup-bg: #292b2e;
+  --text-color: white;
+  --invert-color: #000;
+  --border-color: #363636;
+  --active-bg-color: #262626;
+  --hover-color: #353535;
+  --secondary-text: #a8a8a8;
 }
 
 .app-layout {
   display: flex;
   height: 100vh;
   overflow: hidden;
-  
+  background-color:var(--bg-color);
 }

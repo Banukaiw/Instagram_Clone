@@ -12,6 +12,7 @@
   width: 100%;
   gap: 8px;
   margin-bottom: 24px;
+  color: var(--text-color);
 }
 
 
@@ -43,11 +44,12 @@
   flex-direction: column;
   margin-left: 12px;
   min-width: 0;
+  color: var(--text-color);
 }
 
 
 .suggestions-profile-username {
-  color: #000;
+  color: var(--text-color);
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
@@ -59,7 +61,7 @@
 
 
 .suggestions-profile-name {
-  color: #737373;
+  color: var(--secondary-text);
   font-size: 12px;
   line-height: 16px;
   margin-top: 2px;
@@ -95,7 +97,7 @@
 
 
 .suggestions-header-title {
-  color: #737373;
+  color: var(--text-color);
   font-size: 14px;
   font-weight: 600;
 }
@@ -153,11 +155,12 @@
   flex-direction: column;
   margin-left: 12px;
   min-width: 0;
+  color: var(--text-color);
 }
 
 
 .suggestion-username {
-  color: #000;
+  color: var(--text-color);
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
@@ -168,7 +171,7 @@
 
 
 .suggestion-reason {
-  color: #737373;
+  color: var(--secondary-text);
   font-size: 12px;
   line-height: 16px;
   margin-top: 2px;
@@ -203,7 +206,7 @@
 .bottomnav {
   width: 100%;
   margin-top: 30px;
-  color: #737373;
+  
   font-size: 11px;
 }
 
@@ -214,11 +217,12 @@
   justify-content: left;
   align-items: center;
   gap: 8px;
+  
   line-height: 12px;
 }
 
 .bottomnav-list a {
-  color: #737373;
+  color: var(--secondary-text);
   text-decoration: none;
   font-size: 11px;
 }
@@ -230,6 +234,6 @@
 .bottomnav-copy {
   margin-top: 18px;
   text-align: left;
-  color: #737373;
+  color: var(--secondary-text);
   font-size: 14px;
 }

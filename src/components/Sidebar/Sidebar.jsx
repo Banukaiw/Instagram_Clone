@@ -2,7 +2,7 @@
 import instagramTextLogo from './../../assets/instagram-text.png';
 import instagramLogo from './../../assets/instagram-logo.png';
 
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import Create from '../../pages/Create/Create';
@@ -17,11 +17,14 @@ function Sidebar({ onNotificationClick}) {
   return (
     <div className="Sidebar1">
       <div className="d-flex flex-column gap-3">
-        <img
+        {/* <img
           src={instagramTextLogo}
           alt="Instagram"
           className="logo-text"
-        />
+        /> */}
+        <div>
+          <p className="logo-text">Instagram</p>
+        </div>
         <img
           src={instagramLogo}
           alt="Instagram"

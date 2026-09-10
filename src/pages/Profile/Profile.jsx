@@ -9,8 +9,10 @@ function Profile() {
   const [isEditing, setIsEditing] = useState(false);
   const [username, setUsername] = useState('');
   const [fullName, setFullName] = useState('');
+  const [password, setPassword] = useState('');
   const [profilePicture, setProfilePicture] = useState('');
   const [isSaving, setIsSaving] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     const loggedUser = JSON.parse(localStorage.getItem('user'));
@@ -22,6 +24,7 @@ function Profile() {
       setUsername(loggedUser.username);
       setFullName(loggedUser.fullName);
       setProfilePicture(loggedUser.profilePicture);
+      setPassword(loggedUser.password);
 
       // Get posts and count only this user's posts
       fetchPosts()
@@ -46,22 +49,29 @@ function Profile() {
     setUsername(user.username);
     setFullName(user.fullName);
     setProfilePicture(user.profilePicture);
+    setPassword(user.password);
 
     setIsEditing(false);
   };
 
   const handleSave = async () => {
+
+    if (password.length < 5) {
+    alert('Password must be at least 5 characters long');
+    return;
+  }
+
     setIsSaving(true);
 
     const updatedData = {
       username: username,
       fullName: fullName,
       profilePicture: profilePicture,
+      password: password,
     };
 
     try {
       const updatedUser = await updateUser(user.id, updatedData);
-e
       setUser(updatedUser);
       localStorage.setItem('user', JSON.stringify(updatedUser));
 
@@ -84,8 +94,8 @@ e
     <div className="profile-page">
 
       {!isEditing ? (
-        <>     
-          <div className="profile-header">   
+        <>
+          <div className="profile-header">
             <div className="profile-image-container">
               <img
                 src={user.profilePicture}
@@ -93,8 +103,8 @@ e
                 className="profile-image"
               />
             </div>
-            
-            <div className="profile-info">           
+
+            <div className="profile-info">
               <div className="profile-username-row">
                 <h2 className="profile-username">
                   {user.username}
@@ -124,7 +134,7 @@ e
             </div>
           </div>
 
-        
+
           <div className="profile-buttons">
             <button onClick={handleEditClick}>
               Edit profile
@@ -137,11 +147,11 @@ e
         </>
       ) : (
         <>
-          
+
           <div className="edit-profile">
             <h2>Edit Profile</h2>
             <div className="edit-profile2">
-             
+
               <div className="edit-profile-image">
                 <img
                   src={profilePicture}
@@ -151,7 +161,7 @@ e
               </div>
 
 
-              <div className="edit-profile-form">             
+              <div className="edit-profile-form">
                 <label>
                   Profile Image URL
                 </label>
@@ -162,7 +172,7 @@ e
                   onChange={(e) => setProfilePicture(e.target.value)}
                   placeholder="Enter image URL"
                 />
-              
+
                 <label>
                   Username
                 </label>
@@ -173,7 +183,7 @@ e
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="Enter username"
                 />
-           
+
                 <label>
                   Full Name
                 </label>
@@ -184,12 +194,23 @@ e
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="Enter full name"
                 />
+
+                <label>
+                  Password
+                </label>
+
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter password"
+                />
               </div>
             </div>
 
-            
+
             <div className="edit-profile-buttons">
-              <button className="save-button"onClick={handleSave} disabled={isSaving}>
+              <button className="save-button" onClick={handleSave} disabled={isSaving}>
                 {isSaving ? 'Saving...' : 'Save'}
               </button>
 

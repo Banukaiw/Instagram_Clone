@@ -11,13 +11,15 @@
     border-radius: 30px;
     width: 250px;
     height: 60px;
-     background-color: #cecece;
+    background-color: var(--popup-bg);
+    box-shadow: var(--box-shadow);
     font-size: larger;
     font-weight: 500;
     cursor: pointer;
+    color: var(--text-color);
     
 }
 
 .message-container:hover{
-    background-color: rgb(170, 170, 170);
+    background-color: var(--hover-color);
 }

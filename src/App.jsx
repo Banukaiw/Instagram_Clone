@@ -15,6 +15,8 @@ import Messages from './pages/Messages/Messages';
 import Notification from "./components/Notification/Notification";
 import MessagePop from "./components/MessagePop/MessagePop";
 import Search from "./pages/Search/Search";
+import { useContext } from "react";
+import { ThemeContext } from "./context/ThemeContext";
 
 
 import MessageWindow from '../src/components/MessageWindow/MessageWindow';
@@ -23,13 +25,14 @@ function Layout() {
   const [showMessages, setShowMessages] = useState(false);
   const user = JSON.parse(localStorage.getItem('user'));
   const [showNotifications, setShowNotifications] = useState(false);
+  const { darkMode } = useContext(ThemeContext);
 
   if (!user) {
     return <Navigate to="/login" replace />;
   }
   return (
 
-
+    <div className={darkMode ? "app dark" : "app"}>
     <div className="app-layout">
       <Sidebar
         onNotificationClick={() => setShowNotifications(prev => !prev)}
@@ -49,6 +52,7 @@ function Layout() {
           onClose={() => setShowMessages(false)}
         />
       )}
+    </div>
     </div>
 
   );

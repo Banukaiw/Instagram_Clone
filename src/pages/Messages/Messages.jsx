@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import './Messages.css';
 
 const API_URL = 'http://localhost:3000';
@@ -9,190 +9,163 @@ function Messages() {
   const [users, setUsers] = useState([]);
   const [messages, setMessages] = useState([]);
   const [selectedConversation, setSelectedConversation] = useState(null);
-  const [socket, setSocket] = useState(null);
   const [messageText, setMessageText] = useState('');
+  
+  const socketRef = useRef(null);
 
-  // Currently logged-in user
-  const currentUserId = '1';
+  // Testing පහසු වීම සඳහා URL query parameter එකෙන් (e.g. ?userId=2) නැතහොත් default '1' ගනී
+  const urlParams = new URLSearchParams(window.location.search);
+  const currentUserId = urlParams.get('userId') || '1';
 
-  // WebSocket connection
+  // Selected Conversation Ref එකක් පවත්වා ගැනීම (WebSocket Listener එක ඇතුළේ අලුත්ම Value එක ලබා ගැනීමට)
+  const selectedConvRef = useRef(selectedConversation);
+  useEffect(() => {
+    selectedConvRef.current = selectedConversation;
+  }, [selectedConversation]);
+
+  // WebSocket Connection
   useEffect(() => {
     const ws = new WebSocket(WS_URL);
+    socketRef.current = ws;
 
-    ws.onopen = () => {
-      console.log('✅ Connected to WebSocket server');
-      setSocket(ws);
-    };
+    ws.onopen = () => console.log('✅ Connected to WebSocket server');
 
     ws.onmessage = (event) => {
       const newMessage = JSON.parse(event.data);
-
       console.log('📩 New message received:', newMessage);
 
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        newMessage
-      ]);
+      // 1. දැනට Open කර ඇති Chat එකට අදාළ නම් පමණක් Messages Screen එකට එකතු කරන්න
+      if (
+        selectedConvRef.current &&
+        selectedConvRef.current.id === newMessage.conversationId
+      ) {
+        setMessages((prevMessages) => [...prevMessages, newMessage]);
+      }
+
+      // 2. Sidebar එකේ Conversations List එකේ Last Message එක ලයිව් Update කරන්න
+      setConversations((prevConversations) =>
+        prevConversations.map((conv) => {
+          if (conv.id === newMessage.conversationId) {
+            return {
+              ...conv,
+              lastMessage: newMessage.text,
+              lastMessageTime: newMessage.timestamp,
+            };
+          }
+          return conv;
+        })
+      );
     };
 
-    ws.onclose = () => {
-      console.log('🔴 Disconnected from WebSocket server');
-    };
-
-    ws.onerror = (error) => {
-      console.error('❌ WebSocket error:', error);
-    };
+    ws.onclose = () => console.log('🔴 Disconnected from WebSocket server');
+    ws.onerror = (error) => console.error('❌ WebSocket error:', error);
 
     return () => {
       ws.close();
     };
   }, []);
 
-
-  // Fetch conversations
+  // Fetch Conversations
   useEffect(() => {
     fetch(`${API_URL}/conversations`)
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((data) => {
-        setConversations(data);
+        // Current user ඇතුළත් conversations පමණක් filter කරගැනීම
+        const userConversations = data.filter((c) =>
+          c.participants.includes(currentUserId)
+        );
+        setConversations(userConversations);
       })
-      .catch((error) => {
-        console.error('Error fetching conversations:', error);
-      });
-  }, []);
+      .catch((err) => console.error('Error fetching conversations:', err));
+  }, [currentUserId]);
 
-  // Fetch users
+  // Fetch Users
   useEffect(() => {
     fetch(`${API_URL}/users`)
-      .then((response) => response.json())
-      .then((data) => {
-        setUsers(data);
-      })
-      .catch((error) => {
-        console.error('Error fetching users:', error);
-      });
+      .then((res) => res.json())
+      .then((data) => setUsers(data))
+      .catch((err) => console.error('Error fetching users:', err));
   }, []);
 
-  // Find user by ID
-  const getUser = (userId) => {
-    return users.find((user) => user.id === userId);
-  };
+  const getUser = (userId) => users.find((user) => user.id === userId);
 
-
-  // Get other participant
   const getOtherUser = (conversation) => {
     const otherUserId = conversation.participants.find(
       (id) => id !== currentUserId
     );
-
     return getUser(otherUserId);
   };
 
-  // Select conversation
   const openConversation = (conversation) => {
     setSelectedConversation(conversation);
 
-    fetch(
-      `${API_URL}/messages?conversationId=${conversation.id}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setMessages(data);
-      })
-      .catch((error) => {
-        console.error('Error fetching messages:', error);
-      });
+    fetch(`${API_URL}/messages?conversationId=${conversation.id}`)
+      .then((res) => res.json())
+      .then((data) => setMessages(data))
+      .catch((err) => console.error('Error fetching messages:', err));
   };
 
   const sendMessage = () => {
-  if (!messageText.trim()) {
-    return;
-  }
+    if (!messageText.trim() || !selectedConversation) return;
 
-  if (!selectedConversation) {
-    return;
-  }
+    if (!socketRef.current || socketRef.current.readyState !== WebSocket.OPEN) {
+      console.log('WebSocket is not connected');
+      return;
+    }
 
-  if (!socket || socket.readyState !== WebSocket.OPEN) {
-    console.log('WebSocket is not connected');
-    return;
-  }
+    const otherUserId = selectedConversation.participants.find(
+      (id) => id !== currentUserId
+    );
 
-  const otherUserId = selectedConversation.participants.find(
-    (id) => id !== currentUserId
-  );
+    const newMessage = {
+      id: Date.now().toString(),
+      conversationId: selectedConversation.id,
+      senderId: currentUserId,
+      receiverId: otherUserId,
+      text: messageText,
+      timestamp: new Date().toISOString(),
+    };
 
-  const newMessage = {
-    id: Date.now().toString(),
-    conversationId: selectedConversation.id,
-    senderId: currentUserId,
-    receiverId: otherUserId,
-    text: messageText,
-    timestamp: new Date().toISOString()
+    socketRef.current.send(JSON.stringify(newMessage));
+    setMessageText('');
   };
-
-  socket.send(JSON.stringify(newMessage));
-
-  setMessageText('');
-};
-
-
 
   return (
     <div className="messages-page">
       <div className="messages-sidebar">
         <div className="messages-header">
-          <h2>Messages</h2>
-
-          {/* <button className="new-message-btn">
-            <i className="bi bi-pencil-square"></i>
-          </button> */}
+        
         </div>
 
         <div className="message-search">
           <i className="bi bi-search"></i>
-          <input
-            type="text"
-            placeholder="Search"/>
+          <input type="text" placeholder="Search" />
         </div>
 
         <div className="conversation-list">
           {conversations.map((conversation) => {
-
             const user = getOtherUser(conversation);
-            if (!user) {
-              return null;
-            }
+            if (!user) return null;
+
             return (
               <div
-                className="conversation"
+                className={`conversation ${
+                  selectedConversation?.id === conversation.id ? 'active' : ''
+                }`}
                 key={conversation.id}
                 onClick={() => openConversation(conversation)}
               >
-                <img
-                  src={user.profilePicture}
-                  alt={user.username}
-                />
-
+                <img src={user.profilePicture} alt={user.username} />
                 <div className="conversation-info">
-                  <h4>
-                    {user.username}
-                  </h4>
-
-                  <p>
-                    {conversation.lastMessage}
-                  </p>
-
+                  <h4>{user.username}</h4>
+                  <p>{conversation.lastMessage}</p>
                 </div>
-
                 <span className="message-time">
-
-                  {new Date(
-                    conversation.lastMessageTime
-                  ).toLocaleTimeString([], {
-                    hour: '2-digit',
-                    minute: '2-digit'
-                  })}
+                  {conversation.lastMessageTime &&
+                    new Date(conversation.lastMessageTime).toLocaleTimeString(
+                      [],
+                      { hour: '2-digit', minute: '2-digit' }
+                    )}
                 </span>
               </div>
             );
@@ -202,27 +175,19 @@ function Messages() {
 
       <div className="message-chat">
         {selectedConversation ? (
-          <div className="chat-window">          
-
+          <div className="chat-window">
             <div className="chat-header">
               {(() => {
                 const user = getOtherUser(selectedConversation);
-
                 return (
                   <>
-                    <img
-                      src={user.profilePicture}
-                      alt={user.username}
-                    />
-                    <h3>
-                      {user.username}
-                    </h3>
+                    <img src={user?.profilePicture} alt={user?.username} />
+                    <h3>{user?.username}</h3>
                   </>
                 );
               })()}
-
             </div>
-           
+
             <div className="chat-messages">
               {messages.map((message) => (
                 <div
@@ -233,48 +198,29 @@ function Messages() {
                       : 'message-bubble received'
                   }
                 >
-
                   {message.text}
                 </div>
               ))}
             </div>
 
-
             <div className="chat-input">
-                <input
-                  type="text"
-                  placeholder="Message..."
-                  value={messageText}
-                  onChange={(e) => setMessageText(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      sendMessage();
-                    }
-                  }}
-                />
-                <button onClick={sendMessage}>
-                  Send
-                 
-                </button>
-              </div>
-
+              <input
+                type="text"
+                placeholder="Message..."
+                value={messageText}
+                onChange={(e) => setMessageText(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
+              />
+              <button onClick={sendMessage}>Send</button>
+            </div>
           </div>
-
         ) : (
-
           <div className="empty-chat">
             <h2>Your Messages</h2>
-            <p>
-              Send private photos and messages to a friend or group.
-            </p>
-            <button className="send-message-btn">
-              Send message
-            </button>
+            <p>Send private photos and messages to a friend or group.</p>
           </div>
         )}
-
       </div>
-
     </div>
   );
 }

@@ -1,31 +1,18 @@
 
-/* --------------------------------
-   Reels Page
--------------------------------- */
-
 .reels-page {
   width: 100%;
   height: 100vh;
-
   overflow: hidden;
 }
 
 
-/* --------------------------------
-   Reels Container
--------------------------------- */
-
 .reels-container {
   width: 100%;
   height: 100vh;
-
   overflow-y: auto;
   overflow-x: hidden;
-
   scroll-snap-type: y mandatory;
-
   scroll-behavior: smooth;
-
   scrollbar-width: none;
 }
 
@@ -33,60 +20,35 @@
   display: none;
 }
 
-
-/* --------------------------------
-   Individual Reel
--------------------------------- */
-
 .reel {
   position: relative;
-
   width: 100%;
   height: 100vh;
-
   min-height: 650px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
 
-
-/* --------------------------------
-   Video
--------------------------------- */
-
 .reel-video {
   width: 400px;
   height: 650px;
-
   object-fit: cover;
-
   border-radius: 8px;
-
   background-color: #111;
-
   display: block;
 }
 
 
-/* --------------------------------
-   Profile + Caption
--------------------------------- */
 
 .reel-info {
   position: absolute;
-
   left: calc(50% - 40%);
-
   bottom: 50px;
-
   width: 300px;
   max-width: 300px;
-
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -96,7 +58,6 @@
 .reel-user {
   display: flex;
   align-items: center;
-
   gap: 10px;
 }
 
@@ -104,9 +65,7 @@
 .reel-profile-img {
   width: 40px;
   height: 40px;
-
   border-radius: 50%;
-
   object-fit: cover;
 }
 
@@ -120,46 +79,30 @@
 .follow-btn {
   border: none;
   background: transparent;
-
   color: #0095f6;
-
   font-size: 14px;
   font-weight: 600;
-
   cursor: pointer;
-
   padding: 0;
 }
 
 
 .reel-caption {
   margin-top: 12px;
-
   font-size: 14px;
   line-height: 1.4;
-
   max-width: 320px;
-
   margin-bottom: 0;
 }
 
 
-/* --------------------------------
-   Right Side Actions
--------------------------------- */
-
 .reel-actions {
   position: absolute;
-
   left: calc(50% + 220px);
-
   bottom: 60px;
-
   display: flex;
   flex-direction: column;
-
   align-items: center;
-
   gap: 20px;
 }
 
@@ -194,34 +137,24 @@ justify-content: center;
 
 .reel-action-btn span {
   display: block;
-
   min-height: 16px;
 margin-right: 20%;
   font-size: 13px;
   font-weight: 500;
   line-height: 10px;
-
   text-align: center;
 }
 
 
-/* --------------------------------
-   Reel Scroll Buttons
--------------------------------- */
 
 .reel-scroll-buttons {
   position: fixed;
-
   right: 35px;
   top: 50%;
-
   transform: translateY(-50%);
-
   display: flex;
   flex-direction: column;
-
   gap: 20px;
-
   z-index: 100;
 }
 
@@ -229,22 +162,17 @@ margin-right: 20%;
 .reel-scroll-btn {
   width: 60px;
   height: 60px;
-
   border: none;
   border-radius: 50%;
-
   background-color: #cecece;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
 
   transition: transform 0.2s ease,
               background-color 0.2s ease;
 }
-
 
 .reel-scroll-btn i {
   font-size: 20px;
@@ -260,9 +188,6 @@ margin-right: 20%;
   transform: scale(1.05);
 }
 
-/* --------------------------------
-   Tablet
--------------------------------- */
 
 @media (max-width: 900px) {
 
@@ -277,16 +202,11 @@ margin-right: 20%;
 }
 
 
-/* --------------------------------
-   Mobile
--------------------------------- */
-
 @media (max-width: 700px) {
 
   .reels-container {
     padding: 0;
   }
-
 
   .reel {
     width: 100%;
@@ -294,11 +214,9 @@ margin-right: 20%;
     min-height: 100vh;
   }
 
-
   .reel-video {
     width: 100%;
     height: 100%;
-
     border-radius: 0;
   }
 
@@ -306,7 +224,6 @@ margin-right: 20%;
   .reel-info {
     left: 15px;
     bottom: 30px;
-
     width: 70%;
   }
 
@@ -314,7 +231,6 @@ margin-right: 20%;
   .reel-actions {
     left: auto;
     right: 15px;
-
     bottom: 100px;
   }
 

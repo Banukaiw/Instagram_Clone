@@ -3,17 +3,18 @@
   bottom: 50px;
   left: 15px;
   width: 320px;
-  background: #f4f5f7;
+  background: var(--popup-bg);
   border-radius: 20px;
   overflow: hidden;
-  color: #040404;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  color: var(--text-color);
+  box-shadow: var(--box-shadow);
   z-index: 1000;
 }
 
 .more-menu-items {
   padding: 10px 0; 
 }
+
 
 .more-menu-item {
   height: 60px;
@@ -28,9 +29,19 @@
 }
 
 .more-menu-item:hover {
-  background: #d3d3d4;
-  
-  
+  background: var(--hover-color);
+}
+
+.theme-toggle-button {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+  color: var(--text-color);
 }
 
 .more-menu-item i {
@@ -55,5 +66,5 @@
 }
 
 .logout-item:hover {
-  background: #cbcbcb;
+  background: var(--hover-color);
 }
