@@ -62,5 +62,5 @@ npx json-server --watch db/db.json --port 3000
 
 6.Start the WebSocket server:
 ```
-node server/websocket-server.cjs
+node server/websocket-server.js
 ```
