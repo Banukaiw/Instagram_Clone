@@ -23,7 +23,11 @@ function Sidebar({ onNotificationClick}) {
           className="logo-text"
         /> */}
         <div>
-          <p className="logo-text">Instagram</p>
+          <p className="logo-text">
+            <NavLink to="/" className="logo-link">
+              Instagram
+            </NavLink>
+          </p>
         </div>
         <img
           src={instagramLogo}

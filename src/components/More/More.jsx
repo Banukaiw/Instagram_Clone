@@ -1,27 +1,41 @@
+//More.jsx
 import { useNavigate } from 'react-router-dom';
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import './More.css';
-
 
 function More({ onClose }) {
 
     const { toggleTheme } = useContext(ThemeContext);
-
     const navigate = useNavigate();
 
-    const handleLogout = () => {
-       
-        localStorage.removeItem('token');
+    const moreRef = useRef(null);
 
+    useEffect(() => {
+
+        const handleClickOutside = (event) => {
+            if (moreRef.current && !moreRef.current.contains(event.target)) {
+                onClose();
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [onClose]);
+
+    const handleLogout = () => {
+
+        localStorage.removeItem('token');
         localStorage.removeItem('user');
-    
-        onClose();  
+
+        onClose();
         navigate('/login', { replace: true });
     };
 
     return (
-        <div className="more-menu">
+        <div className="more-menu" ref={moreRef}>
 
             <div className="more-menu-items">
 

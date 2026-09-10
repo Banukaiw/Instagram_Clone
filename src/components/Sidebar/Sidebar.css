@@ -27,6 +27,10 @@
   font-weight: 700;
 }
 
+.logo-link {
+  text-decoration: none;
+  color: var(--text-color);
+}
 
 .Sidebar1 {
   width: 250px;

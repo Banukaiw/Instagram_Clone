@@ -113,6 +113,45 @@
       "profileImage": "https://picsum.photos/id/1025/100/100",
       "text": "❤️❤️",
       "id": "zkEzFwCYTu4"
+    },
+    {
+      "postId": "1",
+      "username": "arthur_levis",
+      "profileImage": "https://i.pinimg.com/1200x/0d/5d/d3/0d5dd368ce8e8f707ce85f5599e6e44e.jpg",
+      "text": "Happy",
+      "id": "9_-M61XrYME"
+    }
+  ],
+  "likes": [
+    {
+      "id": "l2",
+      "postId": "1",
+      "userId": "2"
+    },
+    {
+      "postId": "fG2GetHx-iQ",
+      "userId": "1",
+      "id": "iwbfOpi9Mhs"
+    },
+    {
+      "postId": "Z88xfoVrpbU",
+      "userId": "1",
+      "id": "MCy9EHKyc5w"
+    },
+    {
+      "postId": "1",
+      "userId": "1",
+      "id": "a0qBOf_ktXE"
+    },
+    {
+      "postId": "f4yrEOWxFZ4",
+      "userId": "1",
+      "id": "nVbRI2FxuRg"
+    },
+    {
+      "postId": "Xx0CAgWQruo",
+      "userId": "1",
+      "id": "8zLj6opRsrs"
     }
   ],
   "users": [

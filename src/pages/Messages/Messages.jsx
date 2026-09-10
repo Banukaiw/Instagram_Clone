@@ -13,11 +13,9 @@ function Messages() {
   
   const socketRef = useRef(null);
 
-  // Testing පහසු වීම සඳහා URL query parameter එකෙන් (e.g. ?userId=2) නැතහොත් default '1' ගනී
   const urlParams = new URLSearchParams(window.location.search);
   const currentUserId = urlParams.get('userId') || '1';
 
-  // Selected Conversation Ref එකක් පවත්වා ගැනීම (WebSocket Listener එක ඇතුළේ අලුත්ම Value එක ලබා ගැනීමට)
   const selectedConvRef = useRef(selectedConversation);
   useEffect(() => {
     selectedConvRef.current = selectedConversation;
@@ -34,7 +32,7 @@ function Messages() {
       const newMessage = JSON.parse(event.data);
       console.log('📩 New message received:', newMessage);
 
-      // 1. දැනට Open කර ඇති Chat එකට අදාළ නම් පමණක් Messages Screen එකට එකතු කරන්න
+
       if (
         selectedConvRef.current &&
         selectedConvRef.current.id === newMessage.conversationId
@@ -42,7 +40,7 @@ function Messages() {
         setMessages((prevMessages) => [...prevMessages, newMessage]);
       }
 
-      // 2. Sidebar එකේ Conversations List එකේ Last Message එක ලයිව් Update කරන්න
+
       setConversations((prevConversations) =>
         prevConversations.map((conv) => {
           if (conv.id === newMessage.conversationId) {
@@ -70,7 +68,7 @@ function Messages() {
     fetch(`${API_URL}/conversations`)
       .then((res) => res.json())
       .then((data) => {
-        // Current user ඇතුළත් conversations පමණක් filter කරගැනීම
+
         const userConversations = data.filter((c) =>
           c.participants.includes(currentUserId)
         );

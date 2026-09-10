@@ -147,7 +147,7 @@ export default function Create({ onClose }) {
                     <button type="submit">Post</button>
                 </form>
             </div>
-            {/* ── Posts Grid ── */}
+            
             <div className="profile-grid">
                 {userPosts.map((post) => (
                     <div key={post.id} className="grid-item">

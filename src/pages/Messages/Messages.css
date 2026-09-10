@@ -63,9 +63,7 @@
 .conversation {
   display: flex;
   align-items: center;
-
   padding: 10px 20px;
-
   cursor: pointer;
 }
 
@@ -170,7 +168,6 @@
 }
 
 
-
 .chat-header {
   height: 70px;
   border-bottom: 1px solid #dbdbdb;
@@ -193,7 +190,6 @@
   font-size: 16px;
 }
 
-
 .chat-messages {
   flex: 1;
   overflow-y: auto;
@@ -211,13 +207,11 @@
   font-size: 14px;
 }
 
-
 .message-bubble.sent {
   align-self: flex-end;
   background-color: #3797f0;
   color: white;
 }
-
 
 
 .message-bubble.received {
@@ -226,10 +220,8 @@
   color: #262626;
 }
 
-
 .chat-input {
   display: flex;
-  
   align-items: center;
   gap: 10px;
   padding: 15px 20px;
