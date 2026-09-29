@@ -31,7 +31,7 @@ const Suggestions = () => {
 
           <Link to="/profile" className="suggestions-profile-link">
             <img
-              src={profile.profilePicture}
+              src={profile.profileImage}
               alt="Profile"
               className="suggestions-profile-dp"
             />
@@ -82,7 +82,7 @@ const Suggestions = () => {
           suggestions.map((suggestion) => (
 
             <div
-              key={suggestion.id}
+              key={suggestion._id}
               className="suggestion-item"
             >
               <img

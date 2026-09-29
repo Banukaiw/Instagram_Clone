@@ -10,46 +10,46 @@ function Signup() {
     username: '',
     password: '',
   });
-  const [error, setError]     = useState('');
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+
   const handleSignup = async (e) => {
     e.preventDefault();
-    setError('');
-    setLoading(true);
+    setError(''); setLoading(true);
     try {
-      // Check if username already taken
-      const checkRes = await fetch(
-        `http://localhost:3000/users?username=${form.username}`
-      );
-      const existing = await checkRes.json();
-      if (existing.length > 0) {
-        setError('This username is already taken. Try another.');
-        setLoading(false);
-        return;
+      const res = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST', 
+        headers:
+          { 
+            'Content-Type': 'application/json',      
+          }, 
+          
+          body: JSON.stringify({ 
+            username: form.username, 
+            name: form.fullName, 
+            email: form.email, 
+            password: form.password, 
+          }),
+      }); const data = await res.json(); 
+
+      if (!res.ok) { 
+        setError(data.message || 'Registration failed.'); 
+        setLoading(false); return; } 
+        localStorage.setItem('user', JSON.stringify(data.user)); 
+        navigate('/');
+
+    } catch (err) { 
+
+      setError('Something went wrong. Please try again.'); } 
+      finally { setLoading(false); 
+
       }
-      // Create new user
-      const res = await fetch('http://localhost:3000/users', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...form,
-          profilePicture: `https://picsum.photos/id/${Math.floor(Math.random() * 100)}/200/200`,
-          bio: '',
-        }),
-      });
-      const newUser = await res.json();
-      localStorage.setItem('user', JSON.stringify(newUser));
-      navigate('/');
-    } catch (err) {
-      setError('Something went wrong. Please try again.');
-    } finally {
-      setLoading(false);
-    }
   };
+
   const isFormValid = Object.values(form).every(v => v.trim() !== '');
   return (
     <div className="auth-page">

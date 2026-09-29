@@ -22,8 +22,8 @@ function Profile() {
 
       // Put current user details into the edit form
       setUsername(loggedUser.username);
-      setFullName(loggedUser.fullName);
-      setProfilePicture(loggedUser.profilePicture);
+      setFullName(loggedUser.name);
+      setProfilePicture(loggedUser.profileImage);
       setPassword(loggedUser.password);
 
       // Get posts and count only this user's posts
@@ -57,21 +57,21 @@ function Profile() {
   const handleSave = async () => {
 
     if (password.length < 5) {
-    alert('Password must be at least 5 characters long');
-    return;
-  }
+      alert('Password must be at least 5 characters long');
+      return;
+    }
 
     setIsSaving(true);
 
     const updatedData = {
       username: username,
       fullName: fullName,
-      profilePicture: profilePicture,
+      profileImage: profilePicture,
       password: password,
     };
 
     try {
-      const updatedUser = await updateUser(user.id, updatedData);
+      const updatedUser = await updateUser(user._id, updatedData);
       setUser(updatedUser);
       localStorage.setItem('user', JSON.stringify(updatedUser));
 
@@ -98,7 +98,7 @@ function Profile() {
           <div className="profile-header">
             <div className="profile-image-container">
               <img
-                src={user.profilePicture}
+                src={user.profileImage}
                 alt="Profile"
                 className="profile-image"
               />
@@ -114,7 +114,7 @@ function Profile() {
               </div>
 
               <p className="profile-fullname">
-                {user.fullName}
+                {user.name}
               </p>
 
               <div className="profile-stats">

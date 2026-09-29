@@ -98,9 +98,9 @@ export default function Stories() {
       >
         {stories.map((story) => (
           <div
-            key={story.id}
+            key={story._id}
             className="story-avatar"
-            onClick={() => handleStoryClick(story.id)}
+            onClick={() => handleStoryClick(story._id)}
           >
             <div className="gradient-border">
               <img

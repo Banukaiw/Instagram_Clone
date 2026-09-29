@@ -59,7 +59,7 @@ function Notification({ onClose }) {
         {notifications.map((notification) => (
           <div
             className="notification-item"
-            key={notification.id}
+            key={notification._id}
           >
 
             <div className="notification-profile">

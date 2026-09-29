@@ -1,7 +1,21 @@
 // src/services/api.js
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
-
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+//const BACKEND_URL = 'http://localhost:5000/api';
 // Posts
+/* export const fetchPosts = () =>
+  fetch(`${BASE_URL}/posts`).then(res => res.json());
+
+
+export const createPost = (post) =>
+  fetch(`${BASE_URL}/posts`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(post),
+  }).then(res => res.json());
+
+
+export const deletePost = (id) =>
+  fetch(`${BASE_URL}/posts/${id}`, { method: 'DELETE' }) */;
 export const fetchPosts = () =>
   fetch(`${BASE_URL}/posts`).then(res => res.json());
 
@@ -15,13 +29,56 @@ export const createPost = (post) =>
 
 
 export const deletePost = (id) =>
-  fetch(`${BASE_URL}/posts/${id}`, { method: 'DELETE' });
+  fetch(`${BASE_URL}/posts/${id}`, {
+    method: 'DELETE'
+  });
 
 
+/* export const fetchProfile = () =>
+  fetch(`${BASE_URL}/userProfile`).then(res => res.json()); */
 
 export const fetchProfile = () =>
-  fetch(`${BASE_URL}/userProfile`).then(res => res.json());
+  fetch(`${BASE_URL}/users`)
+    .then(res => res.json())
+    .then(users => users[0]);
 
+
+
+export const fetchLikes = () =>
+  fetch(`${BASE_URL}}/likes`).then(res => res.json());
+
+export const createLike = (like) =>
+  fetch(`${BASE_URL}/likes`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(like)
+  }).then(res => res.json());
+
+export const deleteLike = (id) =>
+  fetch(`${BASE_URL}/likes/${id}`, {
+    method: 'DELETE'
+  });
+  
+
+export const fetchComments = () =>
+  fetch(`${BASE_URL}}/comments`).then(res => res.json());
+
+export const createComment = (comment) =>
+  fetch(`${BASE_URL}/comments`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(comment)
+  }).then(res => res.json());
+
+export const deleteComment = (id) =>
+  fetch(`${BASE_URL}/comments/${id}`, {
+    method: 'DELETE'
+  });
+  
 
 export const updateBio = (bio) =>
   fetch(`${BASE_URL}/userProfile`, {
@@ -44,11 +101,11 @@ export const fetchSuggestions = () =>
 //Reels
 export const fetchReels = async () => {
 
-const response = await fetch(`${BASE_URL}/reels`);
-if (!response.ok) {
-  throw new Error('Failed to fetch reels');
-}
-return response.json();
+  const response = await fetch(`${BASE_URL}/reels`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch reels');
+  }
+  return response.json();
 };
 
 //Notifications
@@ -64,7 +121,7 @@ export async function fetchNotifications() {
 
 
 //Comments
-export const fetchComments = async () => {
+/* export const fetchComments = async () => {
   const response = await fetch(`${BASE_URL}/comments`);
 
   if (!response.ok) {
@@ -72,10 +129,10 @@ export const fetchComments = async () => {
   }
 
   return response.json();
-};
+}; */
 
 //create comments
-export const createComment = async (comment) => {
+/* export const createComment = async (comment) => {
   const response = await fetch(`${BASE_URL}/comments`, {
     method: 'POST',
     headers: {
@@ -89,14 +146,14 @@ export const createComment = async (comment) => {
   }
 
   return response.json();
-};
+}; */
 
 
 
 // Update user profile details
 export const updateUser = (id, updatedData) => {
   return fetch(`${BASE_URL}/users/${id}`, {
-    method: 'PATCH',
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -121,9 +178,13 @@ export async function fetchUsers() {
   return response.json();
 }
 
+export const searchUsers = (searchText) =>
+  fetch(`${BASE_URL}/users/search?q=${encodeURIComponent(searchText)}`)
+    .then(res => res.json());
+
 //fetch search images
 export async function fetchSearchImages() {
-  const response = await fetch(`${BASE_URL}/searchImages`);
+  const response = await fetch(`${BASE_URL}/search-images`);
 
   if (!response.ok) {
     throw new Error('Failed to fetch search images');

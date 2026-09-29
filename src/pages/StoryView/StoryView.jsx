@@ -23,24 +23,24 @@ export default function StoryView() {
         setAllStories(data);
 
 
-        const selected = data.find((s) => s.id === id);
+        const selected = data.find((s) => s._id === id);
 
         setCurrentStory(selected);
       });
 
   }, [id]);   // re-runs when id changes - navigating story to story
   if (!currentStory) return <div className="loading">Loading story...</div>;
-  const currentIndex = allStories.findIndex((s) => s.id === id);
+  const currentIndex = allStories.findIndex((s) => s._id === id);
   const handleNext = () => {
     if (currentIndex < allStories.length - 1) {
-      navigate(`/story/${allStories[currentIndex + 1].id}`);
+      navigate(`/story/${allStories[currentIndex + 1]._id}`);
     } else {
       navigate('/');   // last story → back to home
     }
   };
   const handlePrev = () => {
     if (currentIndex > 0) {
-      navigate(`/story/${allStories[currentIndex - 1].id}`);
+      navigate(`/story/${allStories[currentIndex - 1]._id}`);
     } else {
       navigate('/');   // first story → back to home
     }

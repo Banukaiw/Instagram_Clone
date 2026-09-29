@@ -9,29 +9,47 @@ function Login() {
   const [error, setError]       = useState('');
   const [loading, setLoading]   = useState(false);
   const navigate = useNavigate();
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setError('');
-    setLoading(true);
-    try {
-      // Check credentials against json-server
-      const res = await fetch(
-        `http://localhost:3000/users?username=${username}&password=${password}`
-      );
-      const users = await res.json();
-      if (users.length > 0) {
-        // User found - store in localStorage and redirect
-        localStorage.setItem('user', JSON.stringify(users[0]));
-        navigate('/');
-      } else {
-        setError('Sorry, your password was incorrect. Please double-check your password.');
-      }
-    } catch (err) {
-      setError('Something went wrong. Please try again.');
-    } finally {
+
+
+const handleLogin = async (e) => {
+  e.preventDefault();
+  setError('');
+  setLoading(true);
+
+  try {
+    const res = await fetch('http://localhost:5000/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      setError(data.message || 'Login failed.');
       setLoading(false);
+      return;
     }
-  };
+
+    localStorage.setItem('user', JSON.stringify(data.user));
+
+    navigate('/');
+
+  } catch (err) {
+    setError('Something went wrong. Please try again.');
+  } finally {
+    setLoading(false);
+  }
+};
+
+
+
+
   return (
     <div className="auth-page">
       <div className="auth-card">

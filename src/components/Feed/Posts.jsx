@@ -1,7 +1,7 @@
 
 // src/Posts.jsx
 import { useState, useEffect } from 'react';
-import { fetchPosts, createPost, deletePost } from '../../services/api';
+import { fetchPosts, createPost, deletePost, fetchLikes, createLike, deleteLike, fetchComments } from '../../services/api';
 import './Posts.css';
 import PostView from '../../components/Postview/PostView';
 
@@ -13,44 +13,60 @@ function Posts() {
 
   useEffect(() => {
     fetchPosts()
-      .then(data => setPosts(data));
+      .then(data => {
+        console.log("Posts from MongoDB:", data);
+        setPosts(data);
+      });
 
-    fetch('http://localhost:3000/comments')
+    /* fetch('http://localhost:3000/comments')
       .then(res => res.json())
-      .then(data => setComments(data));
+      .then(data => setComments(data));*/
 
-    fetch('http://localhost:3000/likes')
+    /* fetch('http://localhost:3000/likes')
       .then(res => res.json())
-      .then(data => setLikes(data));
+      .then(data => setLikes(data));  */
+
+    fetchLikes()
+      .then(data => {
+        console.log("Likes from MongoDB:", data);
+        setLikes(data);
+      });
+
+       fetchComments()
+    .then(data => {
+      console.log("Comments from MongoDB:", data);
+      setComments(data);
+    });
+
+
   }, []);
 
 
   const handleLike = (postId) => {
-    const liked = likes.find
-      (like => String(like.postId) ===
-        String(postId) &&
+
+    const liked = likes.find(
+      like =>
+        String(like.postId) === String(postId) &&
         String(like.userId) === '1'
-      );
+    );
 
     if (liked) {
-      fetch(`http://localhost:3000/likes/${liked.id}`, {
-        method: 'DELETE'
-      });
-      setLikes(likes.filter(like => like.id !== liked.id)
-      );
-    }
 
-    else {
+      deleteLike(liked._id)
+        .then(() => {
+          setLikes(
+            likes.filter(like => like._id !== liked._id)
+          );
+        });
+
+    } else {
+
       const newLike = {
         postId: String(postId),
         userId: '1'
       };
-      fetch('http://localhost:3000/likes', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newLike)
-      })
-        .then(res => res.json())
+
+      createLike(newLike)
         .then(data => {
           setLikes([
             ...likes,
@@ -58,6 +74,13 @@ function Posts() {
           ]);
         });
     }
+  };
+
+  const handleCommentAdded = (newComment) => {
+    setComments((previousComments) => [
+      ...previousComments,
+      newComment
+    ]);
   };
 
   const handleCreatePost = (e) => {
@@ -124,116 +147,121 @@ setNewPostImage('');
 
       {posts.length > 0 ? (
         posts.map((post) => (
-          <div
-            key={post.id}
-            className="post"
-            onClick={() => setSelectedPost(post)}
-          >
+          console.log("POST ID:", post._id),
+          console.log("COMMENTS:", comments),
+      <div
+        key={post.id}
+        className="post"
+        onClick={() => setSelectedPost(post)}
+      >
 
-            <div className="post-header">
-              <div className="profile-background">
-                <img
-                  src={post.user?.profile_pic}
-                  alt="Profile"
-                  className="post-profile-image"
-                />
-              </div>
-
-
-              <h5 className="post-username">
-                {post.user?.username}
-              </h5>
-
-              <div className="dot3icon">
-                <i className="bi bi-three-dots"></i>
-              </div>
-            </div>
-
-
+        <div className="post-header">
+          <div className="profile-background">
             <img
-              src={post.image}
-              alt="Post"
-              className="post-img"
+              src={post.user?.profile_pic}
+              alt="Profile"
+              className="post-profile-image"
             />
+          </div>
 
-            <div className="action-icon">
 
-              {/*  <i className="bi bi-heart"
+          <h5 className="post-username">
+            {post.user?.username}
+          </h5>
+
+          <div className="dot3icon">
+            <i className="bi bi-three-dots"></i>
+          </div>
+        </div>
+
+
+        <img
+          src={post.image}
+          alt="Post"
+          className="post-img"
+        />
+
+        <div className="action-icon">
+
+          {/*  <i className="bi bi-heart"
                 onClick={(e) => {
                   e.stopPropagation();
                 }}></i> */}
 
-              <i
-                className={
-                  likes.some(
-                    like =>
-                      String(like.postId) === String(post.id) &&
-                      like.userId === "1"
-                  )
-                    ? "bi bi-heart-fill"
-                    : "bi bi-heart"
-                }
+          <i
+            className={
+              likes.some(
+                like =>
+                  String(like.postId) === String(post._id) &&
+                  String(like.userId) === "1"
+              )
+                ? "bi bi-heart-fill"
+                : "bi bi-heart"
+            }
 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleLike(post.id);
-                }}
-              ></i>
+            onClick={(e) => {
+              e.stopPropagation();
+              handleLike(post._id);
+            }}
+          ></i>
 
-              <div className="action-like"
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}>
-                {likes.filter(like => like.postId === post.id).length}
-
-              </div>
-
-              <i className="bi bi-chat"></i>
-
-              <div className="action-like">
-                {comments.filter(
-                  comment => String(comment.postId) === String(post.id)
-                ).length}
-              </div>
-
-              <i className="bi bi-repeat"
-              onClick={(e) => {
-                  e.stopPropagation();
-                }}
-              ></i>
-
-              <i className="bi bi-send"
-              onClick={(e) => {
-                  e.stopPropagation();
-                }}></i>
-
-              <i className="bi bi-bookmark"
-              onClick={(e) => {
-                  e.stopPropagation();
-                }}></i>
-
-            </div>
-
-            <div className="post-caption">
-              <span className="post-caption-username">
-                {post.user?.username}
-              </span>
-
-              <span>
-                {post.caption}
-              </span>
-            </div>
+          <div className="action-like"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}>
+            {likes.filter(
+              like => String(like.postId) === String(post._id)
+            ).length}
 
           </div>
-        ))
+
+          <i className="bi bi-chat"></i>
+
+          <div className="action-like">
+            {comments.filter(
+              comment => String(comment.postId) === String(post._id)
+            ).length}
+          </div>
+
+          <i className="bi bi-repeat"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          ></i>
+
+          <i className="bi bi-send"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}></i>
+
+          <i className="bi bi-bookmark"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}></i>
+
+        </div>
+
+        <div className="post-caption">
+          <span className="post-caption-username">
+            {post.user?.username}
+          </span>
+
+          <span>
+            {post.caption}
+          </span>
+        </div>
+
+      </div>
+      ))
       ) : (
-        <p>Loading posts...</p>
+      <p>Loading posts...</p>
       )}
 
       {selectedPost && (
         <PostView
           post={selectedPost}
           onClose={() => setSelectedPost(null)}
+          onCommentAdded={handleCommentAdded}
         />
       )}
 

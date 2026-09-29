@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 //import '../Profile/Profile.css';
 import '../Create/Create.css';
-import { fetchProfile, fetchPosts, updateBio, createPost,/*deletePost */ } from '../../services/api';
+import { fetchProfile, fetchPosts, updateBio, createPost, deletePost  } from '../../services/api';
 
 
 export default function Create({ onClose }) {
@@ -61,7 +61,7 @@ export default function Create({ onClose }) {
             user: {
                 id: user.id,
                 username: user.username,
-                profile_pic: user.profilePicture,
+                profile_pic: user.profileImage,
             },
             image: newPostImage || 'https://picsum.photos/600/600',
             caption: newPostCaption,
@@ -93,7 +93,7 @@ export default function Create({ onClose }) {
             .then((res) => {
                 if (res.ok) {
                     setUserPosts(
-                        userPosts.filter((p) => p.id !== postId)
+                        userPosts.filter((p) => p._id !== postId)
                     );
                 }
             });
@@ -107,7 +107,7 @@ export default function Create({ onClose }) {
             </button>
             {/* ── Profile Header ── */}
             <div className="profile-header">
-                <img src={user.profilePicture} alt={user.username} className="profile-pic" />
+                <img src={user.profileImage} alt={user.username} className="profile-pic" />
                 <div className="profile-info">
                     <h2>{user.username}</h2>
                     <p className="bio">{user.bio}</p>
@@ -147,14 +147,14 @@ export default function Create({ onClose }) {
                     <button type="submit">Post</button>
                 </form>
             </div>
-            
+
             <div className="profile-grid">
                 {userPosts.map((post) => (
                     <div key={post.id} className="grid-item">
-                        <img src={post.postImage} alt={post.caption} />
+                        <img src={post.image} alt={post.caption} />
                         <div className="grid-overlay">
                             <p>{post.caption}</p>
-                            <button className="delete-btn" onClick={() => handleDeletePost(post.id)}>
+                            <button className="delete-btn" onClick={() => handleDeletePost(post._id)}>
                                 Delete
                             </button>
                         </div>

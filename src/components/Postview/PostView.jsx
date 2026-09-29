@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import {fetchComments,createComment} from '../../services/api';
+import { fetchComments, createComment } from '../../services/api';
 
 import './PostView.css';
 
-function PostView({ post, onClose }) {
+function PostView({ post, onClose, onCommentAdded }) {
 
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,7 +16,7 @@ function PostView({ post, onClose }) {
         setLoading(true);
         const data = await fetchComments();
         const postComments = data.filter(
-          (comment) => comment.postId === post.id
+          (comment) => String(comment.postId) === String(post._id)
         );
 
         setComments(postComments);
@@ -51,11 +51,12 @@ function PostView({ post, onClose }) {
 
       // Convert JSON string into JavaScript object
       const loggedUser = JSON.parse(userData);
+      console.log("Logged user:", loggedUser);
 
       // Create new comment
       const newComment = {
 
-        postId: post.id,
+        postId: String(post._id),
         username: loggedUser.username,
         profileImage: loggedUser.profilePicture,
         text: commentText.trim()
@@ -68,6 +69,7 @@ function PostView({ post, onClose }) {
         ...previousComments,
         savedComment
       ]);
+      onCommentAdded(savedComment);
       setCommentText('');
 
     } catch (error) {
@@ -126,7 +128,7 @@ function PostView({ post, onClose }) {
               comments.map((comment) => (
                 <div
                   className="post-comment"
-                  key={comment.id}
+                  key={comment._id}
                 >
                   <img
                     src={comment.profileImage}

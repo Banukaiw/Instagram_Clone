@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './Search.css';
-import { fetchSearchImages, fetchUsers } from '../../services/api';
+import { fetchSearchImages, searchUsers } from '../../services/api';
 
 function Search() {
 
@@ -20,19 +20,19 @@ function Search() {
   }, []);
 
   useEffect(() => {
-    fetchUsers()
-      .then(data => {
-        setUsers(data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, []);
+  if (searchText === '') {
+    setUsers([]);
+    return;
+  }
 
- const filteredUsers = users.filter(user =>
-  user.username?.toLowerCase().includes(searchText.toLowerCase()) ||
-  user.name?.toLowerCase().includes(searchText.toLowerCase())
-);
+  searchUsers(searchText)
+    .then(data => {
+      setUsers(data);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}, [searchText]);
 
   return (
     <div className="search-page">
@@ -48,7 +48,7 @@ function Search() {
 
       {searchText !== '' && (
         <div className="search-results">
-          {filteredUsers.map((user) => (
+          {users.map((user) => (
             <div
               className="search-user"
               key={user.id}
@@ -78,7 +78,7 @@ function Search() {
           {searchImages.map((item) => (
             <div
               className="search-item"
-              key={item.id}
+              key={item._id}
             >
               <img
                 src={item.image}
