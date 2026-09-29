@@ -45,22 +45,34 @@ git clone https://github.com/your-username/Instagram_Clone.git
 cd instagram_Clone
 ```
 
-3. Install the dependencies
+3. Navigate to frontend(open a terminal and run)
+```
+cd frontend
+```
+4. Install the dependencies
 ```
 npm install
 ```
 
-4. Start the React application(run those command in 3 terminal):
+5. Start the React application(frontend):
 ```
 npm run dev
 ```
 
-5. Start JSON Server:
+6. Navigate to backend(open a another terminal and run)
 ```
-npx json-server --watch db/db.json --port 3000
+cd backend
 ```
 
-6.Start the WebSocket server:
+7. Install the dependencies
 ```
-node server/websocket-server.js
+npm install
 ```
+
+8. Start the backend application):
+```
+npm run dev
+```
+
+
+
